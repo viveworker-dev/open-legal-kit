@@ -1,0 +1,42 @@
+{
+  "name": "open-legal-kit",
+  "version": "0.1.0",
+  "description": "Legal hygiene starter kit for AI-built indie apps.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/viveworker-dev/open-legal-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/viveworker-dev/open-legal-kit/issues"
+  },
+  "homepage": "https://github.com/viveworker-dev/open-legal-kit#readme",
+  "bin": {
+    "open-legal-kit": "./bin/open-legal-kit.mjs"
+  },
+  "files": [
+    "bin",
+    "templates",
+    "examples",
+    "prompts",
+    "docs",
+    "config.example.json",
+    "README.md",
+    "LICENSE",
+    "TEMPLATE-LICENSE.md"
+  ],
+  "scripts": {
+    "generate": "node ./bin/open-legal-kit.mjs generate --config ./config.example.json --out ./dist",
+    "check": "node ./bin/open-legal-kit.mjs check --config ./config.example.json",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "keywords": [
+    "privacy-policy",
+    "terms-of-service",
+    "indie-hacker",
+    "ai-apps",
+    "legal-pages",
+    "starter-kit"
+  ],
+  "license": "MIT"
+}
