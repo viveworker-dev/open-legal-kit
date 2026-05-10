@@ -28,10 +28,12 @@ function usage() {
   console.log(`open-legal-kit
 
 Usage:
+  open-legal-kit web [--port 4173]
   open-legal-kit generate --config ./config.json --out ./dist
   open-legal-kit check --config ./config.json
 
 Options:
+  --port <number>  Local web wizard port
   --config <path>   JSON config file
   --out <path>      Output directory for generated pages
 `);
@@ -53,6 +55,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === "--out") {
       options.out = rest[i + 1];
+      i += 1;
+    } else if (arg === "--port") {
+      options.port = Number(rest[i + 1]);
       i += 1;
     } else if (arg === "--help" || arg === "-h") {
       options.help = true;
@@ -610,6 +615,12 @@ async function main() {
 
   if (!options.command || options.help) {
     usage();
+    return;
+  }
+
+  if (options.command === "web" || options.command === "serve-web") {
+    const { startWebServer } = await import("../scripts/serve-web.mjs");
+    startWebServer({ port: options.port });
     return;
   }
 

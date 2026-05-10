@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>open-legal-kit wizard</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">open-legal-kit</p>
+      <h1>Legal Hygiene Wizard</h1>
+      <p class="subtitle">Draft first. Verify with your coding agent. Review before publishing.</p>
+    </div>
+    <div class="topbar-actions">
+      <button id="loadExample" type="button">Load Example</button>
+      <button id="resetForm" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <form id="wizard" class="panel wizard-panel">
+      <section class="form-section">
+        <h2>Basics</h2>
+        <div class="field-grid">
+          <label>
+            App name
+            <input name="app_name" required value="Example AI Notes">
+          </label>
+          <label>
+            App URL
+            <input name="app_url" required value="https://example.com">
+          </label>
+          <label>
+            Operator
+            <input name="operator_name" required value="Example Labs">
+          </label>
+          <label>
+            Contact email
+            <input name="contact_email" required value="privacy@example.com">
+          </label>
+          <label>
+            Governing law
+            <input name="governing_law" value="Japan">
+          </label>
+          <label>
+            Data retention days
+            <input name="data_retention_days" type="number" min="1" value="365">
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Languages</h2>
+        <div class="check-row">
+          <label><input type="checkbox" name="locale_en" checked> English</label>
+          <label><input type="checkbox" name="locale_ja" checked> Japanese</label>
+          <label><input type="checkbox" name="locale_zh" checked> Simplified Chinese</label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Data And Features</h2>
+        <div class="switch-grid">
+          <label><input type="checkbox" name="has_accounts" checked> Accounts</label>
+          <label><input type="checkbox" name="collects_email" checked> Email/contact data</label>
+          <label><input type="checkbox" name="uses_cookies" checked> Cookies/local storage</label>
+          <label><input type="checkbox" name="uses_analytics" checked> Analytics</label>
+          <label><input type="checkbox" name="is_ai_wrapper" checked> AI wrapper</label>
+          <label><input type="checkbox" name="uses_ai_api" checked> AI API</label>
+          <label><input type="checkbox" name="stores_user_content" checked> Stores prompts/content</label>
+          <label><input type="checkbox" name="stores_user_files"> File uploads</label>
+          <label><input type="checkbox" name="has_payments" checked> Payments</label>
+          <label><input type="checkbox" name="has_subscriptions" checked> Subscriptions</label>
+          <label><input type="checkbox" name="has_free_trial"> Free trial</label>
+          <label><input type="checkbox" name="has_usage_limits" checked> Usage limits</label>
+          <label><input type="checkbox" name="is_mobile_app"> Mobile app</label>
+          <label><input type="checkbox" name="uses_push_notifications"> Push notifications</label>
+          <label><input type="checkbox" name="uses_crash_reporting"> Crash reporting</label>
+          <label><input type="checkbox" name="targets_children"> Targets children</label>
+          <label><input type="checkbox" name="allows_user_generated_content"> Public user content</label>
+          <label><input type="checkbox" name="allows_sensitive_uploads"> Sensitive uploads</label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Providers</h2>
+        <div class="field-grid">
+          <label>
+            AI providers
+            <input name="ai_providers" value="OpenAI, Anthropic">
+          </label>
+          <label>
+            Analytics tools
+            <input name="analytics_tools" value="Plausible Analytics">
+          </label>
+          <label>
+            Payment provider
+            <input name="payment_provider" value="Stripe">
+          </label>
+          <label>
+            Cancellation URL
+            <input name="cancellation_url" value="https://example.com/billing">
+          </label>
+          <label>
+            Mobile platforms
+            <input name="mobile_platforms" value="iOS, Android">
+          </label>
+          <label>
+            Crash reporting tools
+            <input name="crash_reporting_tools" value="Firebase Crashlytics">
+          </label>
+          <label>
+            Available regions
+            <input name="available_regions" value="jp, us">
+          </label>
+          <label>
+            Upload retention days
+            <input name="upload_retention_days" type="number" min="1" value="30">
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Review Notes</h2>
+        <label>
+          Custom notes
+          <textarea name="custom_notes" rows="4">Replace placeholders before publishing.
+Ask your coding agent to verify analytics, AI providers, payments, storage, and deletion flows against the codebase.</textarea>
+        </label>
+      </section>
+    </form>
+
+    <section class="panel output-panel">
+      <div class="output-toolbar">
+        <div>
+          <h2>Drafts</h2>
+          <p id="statusLine">Ready to generate.</p>
+        </div>
+        <div class="toolbar-actions">
+          <select id="fileSelect" aria-label="Generated file"></select>
+          <button id="downloadCurrent" type="button">Download</button>
+        </div>
+      </div>
+
+      <div id="warnings" class="warnings" hidden></div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="preview" type="button">Preview</button>
+        <button class="tab" data-tab="config" type="button">Config</button>
+        <button class="tab" data-tab="agent" type="button">Agent Prompt</button>
+      </div>
+
+      <div id="previewTab" class="tab-panel">
+        <textarea id="previewOutput" spellcheck="false"></textarea>
+      </div>
+      <div id="configTab" class="tab-panel" hidden>
+        <textarea id="configOutput" spellcheck="false"></textarea>
+        <button id="copyConfig" type="button">Copy Config</button>
+      </div>
+      <div id="agentTab" class="tab-panel" hidden>
+        <textarea id="agentOutput" spellcheck="false"></textarea>
+        <button id="copyAgent" type="button">Copy Prompt</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

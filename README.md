@@ -57,6 +57,30 @@ Supported output languages:
 
 ## Quick Start
 
+### Web Wizard
+
+If you want to start without writing JSON by hand, run the local wizard:
+
+```bash
+npx open-legal-kit@latest web
+```
+
+It serves a browser UI on `127.0.0.1`, drafts the config and legal pages, and
+includes an Agent Prompt tab. The intended workflow is:
+
+- choose the app shape in the wizard
+- copy the generated agent prompt into Codex, Claude, Cursor, or another coding
+  agent
+- have the agent inspect the actual codebase, fix uncertain config facts, and
+  run the CLI generator
+
+When working from this repository:
+
+```bash
+npm run web:templates
+npm run web:serve
+```
+
 ### Ask Your Coding Agent
 
 Most users of this kit are probably building with Codex, Claude, Cursor, or

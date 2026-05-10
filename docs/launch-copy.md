@@ -126,6 +126,37 @@ not legal advice.
 better than launching with nothing.
 ```
 
+## Web Wizard Post
+
+English:
+
+```text
+added a local web wizard to open-legal-kit.
+
+run:
+npx open-legal-kit@latest web
+
+pick your app shape in the browser, draft the config + legal pages, then hand the generated agent prompt to Codex/Claude/Cursor so it can inspect the real codebase and fix uncertain facts.
+
+not legal advice.
+but much better than shipping with an empty footer.
+```
+
+Japanese:
+
+```text
+open-legal-kit にローカルWebウィザードを追加した。
+
+実行:
+npx open-legal-kit@latest web
+
+ブラウザでアプリの形を選ぶと、設定と法務ページ草案を作れる。
+最後に生成されたエージェント向けプロンプトを Codex / Claude / Cursor に渡して、実際のコードベースと照合してもらう。
+
+法務アドバイスではない。
+でも、フッターが空のまま公開するよりはかなり良い出発点になるはず。
+```
+
 ## Follow-Up Post Ideas
 
 ```text

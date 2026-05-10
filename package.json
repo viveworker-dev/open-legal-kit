@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/viveworker-dev/open-legal-kit#readme",
   "bin": {
-    "open-legal-kit": "./bin/open-legal-kit.mjs"
+    "open-legal-kit": "bin/open-legal-kit.mjs"
   },
   "files": [
     "bin",
@@ -20,14 +20,19 @@
     "examples",
     "prompts",
     "docs",
+    "scripts",
+    "web",
     "config.example.json",
     "README.md",
     "LICENSE",
     "TEMPLATE-LICENSE.md"
   ],
   "scripts": {
+    "prepack": "node ./scripts/build-web-templates.mjs",
     "generate": "node ./bin/open-legal-kit.mjs generate --config ./config.example.json --out ./dist",
     "check": "node ./bin/open-legal-kit.mjs check --config ./config.example.json",
+    "web:templates": "node ./scripts/build-web-templates.mjs",
+    "web:serve": "node ./scripts/serve-web.mjs",
     "pack:dry-run": "npm pack --dry-run"
   },
   "keywords": [
